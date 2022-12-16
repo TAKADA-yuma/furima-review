@@ -8,6 +8,8 @@ class ItemsController < ApplicationController
     @items = Item.order(created_at: :desc).with_attached_image
   end
 
+
+  
   def new
     @item = Item.new
   end
