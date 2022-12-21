@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
 
 
   def index
-    @items = Item.order(created_at: :desc).with_attached_image
+    @items = Item.all.includes(:user).order(created_at desc)"
   end
 
 
