@@ -1,12 +1,14 @@
 class ItemsController < ApplicationController
   before_action :set_item, except: %i(index new create)
-  before_action :authenticate_user!, except: %i(index show)
+  before_action :authenticate_user!, except: [:index]
   before_action :move_to_index, only: %i(edit update destroy)
 
 
   def index
-    @items = Item.order(created_at: :desc).with_attached_image
+    @items = Item.all.includes(:user).order(created_at desc)
   end
+
+
 
   def new
     @item = Item.new
